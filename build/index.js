@@ -1,7 +1,7 @@
 // BASIC GULPFILE
 // - - - - - - - - - - - - - - -
-// This file processes all of the assets in the "src" folder
-// and outputs the finished files in the "dist" folder.
+// This file processes all of the assets in the top level folder
+// and outputs the finished files here
 
 // 1. LIBRARIES
 // - - - - - - - - - - - - - - -
@@ -13,12 +13,12 @@ var runSequence = require('run-sequence');
 // 2. SETTINGS VARIABLES
 // - - - - - - - - - - - - - - -
 var paths = {
-    src: 'src/',
-    dist: 'dist/'
+    src: '..',
+    dist: '.'
 };
 
 var assets = {
-    js: 'js/',
+    js: '/',
     css: 'css/',
     img: 'img/',
     lib: 'lib/'
@@ -40,6 +40,8 @@ gulp.task('clean', function() {
 // Compiles and copies the JavaScript
 gulp.task('js', function() {
     return gulp.src(paths.src + assets.js + files.js)
+        .pipe(plugins.ignore.exclude(/node_modules/))
+        .pipe(plugins.ignore.exclude(/build/))
         .pipe(plugins.plumber())
         .pipe(plugins.jshint())
         .pipe(plugins.jshint.reporter('jshint-stylish'))
@@ -91,7 +93,7 @@ gulp.task('watch', function() {
 
 // Default task: builds your app
 gulp.task('default', function() {
-    runSequence('clean', ['js', 'css', 'img', 'lib', 'watch'], function() {
+    runSequence('clean', ['js', 'lib', 'watch'], function() {
         console.log("Successfully built.");
     });
 });

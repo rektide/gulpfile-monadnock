@@ -1,19 +1,7 @@
-# apex-gulpfile
-This is a super basic Gulpfile for anyone who only needs JavaScript, CSS, images and vendor files (3rd party) handling.
+# gulpfile-monadnock
+A basic structure for project building, where the build isolates itself inside a "build" container and the the top level remains dedicated to source. Includes a complementary skeleton gulpfile from [Apex Gulpfile](http://vmorneau.me/basic-gulpfile/), whose greater structure I find to be fair and hence include as a getting started reference.
 
-See http://vmorneau.me/basic-gulpfile/ for more info.
-
-#Changelog
-##v1.2
-- Updated dependencies
-- Changed terminology
-    - `client` to `src`
-    - `build` to `dist`
-- Removed image minification package
-    - was not generic enough for this project
-- Removed assets intermediate folder 
-
-#Features
+#Apex Gulpfile Features
 - CSS (concatenation, minification, autoprefixer)
 - JS (concatenation, minification)
 - IMG (optimization)
@@ -31,23 +19,21 @@ See http://vmorneau.me/basic-gulpfile/ for more info.
 #How to use
 From the root folder, You can create, edit or delete any files in:
 ```
-|-/src
+|-/
+    |-**/*.j
     |-css
     |-img
-    |-js
     |-lib
 ```
 
 The Gulp magic will happen and compile your files to this folder structure:
 
 ```
-|-/dist
+|-/build
     |-css
     |-img
     |-js
     |-lib
 ```
-
-Note: Everything in the ```/src/``` folder of this repo is to be replaced by your files.
 
 ###That's all! Enjoy a faster & cleaner static files handling.
